@@ -113,7 +113,6 @@ Example tables:
 - Fact_Race_Results
 - Dim_Drivers
 - Dim_Constructors
-- Dim_Circuits
 - Dim_Races
 
 The Gold layer data can be used for reporting and analytical purposes.
