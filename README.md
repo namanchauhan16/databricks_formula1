@@ -28,8 +28,6 @@ The project demonstrates concepts like:
 
 # Architecture Diagram
 
-_Add your architecture image here_
-
 ![Architecture Diagram](images/formula1_architecture_diagram.png)
 
 ---
