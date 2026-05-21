@@ -1,4 +1,4 @@
-# Formula 1 Data Engineering Pipeline
+# Formula 1 Data Lakehouse Architecture
 
 ## Project Overview
 
