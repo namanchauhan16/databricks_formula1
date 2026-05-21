@@ -30,7 +30,7 @@ The project demonstrates concepts like:
 
 _Add your architecture image here_
 
-![Architecture Diagram](images/formula1 architecture diagram.png)
+![Architecture Diagram](images/formula1_architecture_diagram.png)
 
 ---
 
