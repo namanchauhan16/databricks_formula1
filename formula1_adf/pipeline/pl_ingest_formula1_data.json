@@ -1,0 +1,698 @@
+{
+	"name": "pl_ingest_formula1_data",
+	"properties": {
+		"activities": [
+			{
+				"name": "Ingest circuits file",
+				"type": "DatabricksNotebook",
+				"dependsOn": [
+					{
+						"activity": "Create new batch",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "0.12:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"notebookPath": "/Users/namanchauhan59@gmail.com/Databricks Course/formula1_project_incr_load/2-bronze/1. Ingest circuits files",
+					"baseParameters": {
+						"batch_id": {
+							"value": "@activity('Identify next batch').output.runOutput",
+							"type": "Expression"
+						}
+					}
+				},
+				"linkedServiceName": {
+					"referenceName": "ls_databricks_course_ws",
+					"type": "LinkedServiceReference"
+				}
+			},
+			{
+				"name": "Ingest races files",
+				"type": "DatabricksNotebook",
+				"dependsOn": [
+					{
+						"activity": "Create new batch",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "0.12:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"notebookPath": "/Users/namanchauhan59@gmail.com/Databricks Course/formula1_project_incr_load/2-bronze/2. Ingest races files",
+					"baseParameters": {
+						"batch_id": {
+							"value": "@activity('Identify next batch').output.runOutput",
+							"type": "Expression"
+						}
+					}
+				},
+				"linkedServiceName": {
+					"referenceName": "ls_databricks_course_ws",
+					"type": "LinkedServiceReference"
+				}
+			},
+			{
+				"name": "Ingest constructors file",
+				"type": "DatabricksNotebook",
+				"dependsOn": [
+					{
+						"activity": "Create new batch",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "0.12:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"notebookPath": "/Users/namanchauhan59@gmail.com/Databricks Course/formula1_project_incr_load/2-bronze/3. Ingest constructors file",
+					"baseParameters": {
+						"batch_id": {
+							"value": "@activity('Identify next batch').output.runOutput",
+							"type": "Expression"
+						}
+					}
+				},
+				"linkedServiceName": {
+					"referenceName": "ls_databricks_course_ws",
+					"type": "LinkedServiceReference"
+				}
+			},
+			{
+				"name": "Ingest drivers file",
+				"type": "DatabricksNotebook",
+				"dependsOn": [
+					{
+						"activity": "Create new batch",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "0.12:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"notebookPath": "/Users/namanchauhan59@gmail.com/Databricks Course/formula1_project_incr_load/2-bronze/4. Ingest drivers file",
+					"baseParameters": {
+						"batch_id": {
+							"value": "@activity('Identify next batch').output.runOutput",
+							"type": "Expression"
+						}
+					}
+				},
+				"linkedServiceName": {
+					"referenceName": "ls_databricks_course_ws",
+					"type": "LinkedServiceReference"
+				}
+			},
+			{
+				"name": "Ingestion results files",
+				"type": "DatabricksNotebook",
+				"dependsOn": [
+					{
+						"activity": "Create new batch",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "0.12:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"notebookPath": "/Users/namanchauhan59@gmail.com/Databricks Course/formula1_project_incr_load/2-bronze/5. Ingestion results files",
+					"baseParameters": {
+						"batch_id": {
+							"value": "@activity('Identify next batch').output.runOutput",
+							"type": "Expression"
+						}
+					}
+				},
+				"linkedServiceName": {
+					"referenceName": "ls_databricks_course_ws",
+					"type": "LinkedServiceReference"
+				}
+			},
+			{
+				"name": "Ingest sprints files",
+				"type": "DatabricksNotebook",
+				"dependsOn": [
+					{
+						"activity": "Create new batch",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "0.12:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"notebookPath": "/Users/namanchauhan59@gmail.com/Databricks Course/formula1_project_incr_load/2-bronze/6. Ingest sprints files",
+					"baseParameters": {
+						"batch_id": {
+							"value": "@activity('Identify next batch').output.runOutput",
+							"type": "Expression"
+						}
+					}
+				},
+				"linkedServiceName": {
+					"referenceName": "ls_databricks_course_ws",
+					"type": "LinkedServiceReference"
+				}
+			},
+			{
+				"name": "Identify next batch",
+				"type": "DatabricksNotebook",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "0.12:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"notebookPath": "/Users/namanchauhan59@gmail.com/Databricks Course/formula1_project_incr_load/6-orchestration/Identify next batch"
+				},
+				"linkedServiceName": {
+					"referenceName": "ls_databricks_course_ws",
+					"type": "LinkedServiceReference"
+				}
+			},
+			{
+				"name": "Is batch_id exists",
+				"type": "IfCondition",
+				"dependsOn": [
+					{
+						"activity": "Identify next batch",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"expression": {
+						"value": "@not(empty(activity('Identify next batch').output.runOutput))",
+						"type": "Expression"
+					},
+					"ifTrueActivities": [
+						{
+							"name": "Set batch_id",
+							"type": "SetVariable",
+							"dependsOn": [],
+							"policy": {
+								"secureOutput": false,
+								"secureInput": false
+							},
+							"userProperties": [],
+							"typeProperties": {
+								"variableName": "batch_id",
+								"value": {
+									"value": "@activity('Identify next batch').output.runOutput",
+									"type": "Expression"
+								}
+							}
+						}
+					]
+				}
+			},
+			{
+				"name": "Create new batch",
+				"type": "DatabricksNotebook",
+				"dependsOn": [
+					{
+						"activity": "Is batch_id exists",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "0.12:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"notebookPath": "/Users/namanchauhan59@gmail.com/Databricks Course/formula1_project_incr_load/6-orchestration/Create new batch",
+					"baseParameters": {
+						"batch_id": {
+							"value": "@activity('Identify next batch').output.runOutput",
+							"type": "Expression"
+						}
+					}
+				},
+				"linkedServiceName": {
+					"referenceName": "ls_databricks_course_ws",
+					"type": "LinkedServiceReference"
+				}
+			},
+			{
+				"name": "Transform circuits data",
+				"type": "DatabricksNotebook",
+				"dependsOn": [
+					{
+						"activity": "Ingest circuits file",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "0.12:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"notebookPath": "/Users/namanchauhan59@gmail.com/Databricks Course/formula1_project_incr_load/3-silver/1. Transform circuits data",
+					"baseParameters": {
+						"batch_id": {
+							"value": "@activity('Identify next batch').output.runOutput",
+							"type": "Expression"
+						}
+					}
+				},
+				"linkedServiceName": {
+					"referenceName": "ls_databricks_course_ws",
+					"type": "LinkedServiceReference"
+				}
+			},
+			{
+				"name": "Transform races data",
+				"type": "DatabricksNotebook",
+				"dependsOn": [
+					{
+						"activity": "Ingest races files",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "0.12:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"notebookPath": "/Users/namanchauhan59@gmail.com/Databricks Course/formula1_project_incr_load/3-silver/2. Transform races data",
+					"baseParameters": {
+						"batch_id": {
+							"value": "@activity('Identify next batch').output.runOutput",
+							"type": "Expression"
+						}
+					}
+				},
+				"linkedServiceName": {
+					"referenceName": "ls_databricks_course_ws",
+					"type": "LinkedServiceReference"
+				}
+			},
+			{
+				"name": "Transform constructors data",
+				"type": "DatabricksNotebook",
+				"dependsOn": [
+					{
+						"activity": "Ingest constructors file",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "0.12:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"notebookPath": "/Users/namanchauhan59@gmail.com/Databricks Course/formula1_project_incr_load/3-silver/3. Transform constructors data",
+					"baseParameters": {
+						"batch_id": {
+							"value": "@activity('Identify next batch').output.runOutput",
+							"type": "Expression"
+						}
+					}
+				},
+				"linkedServiceName": {
+					"referenceName": "ls_databricks_course_ws",
+					"type": "LinkedServiceReference"
+				}
+			},
+			{
+				"name": "Transform drivers data",
+				"type": "DatabricksNotebook",
+				"dependsOn": [
+					{
+						"activity": "Ingest drivers file",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "0.12:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"notebookPath": "/Users/namanchauhan59@gmail.com/Databricks Course/formula1_project_incr_load/3-silver/4. Transform drivers data",
+					"baseParameters": {
+						"batch_id": {
+							"value": "@activity('Identify next batch').output.runOutput\r\n",
+							"type": "Expression"
+						}
+					}
+				},
+				"linkedServiceName": {
+					"referenceName": "ls_databricks_course_ws",
+					"type": "LinkedServiceReference"
+				}
+			},
+			{
+				"name": "Transform results data",
+				"type": "DatabricksNotebook",
+				"dependsOn": [
+					{
+						"activity": "Ingestion results files",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "0.12:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"notebookPath": "/Users/namanchauhan59@gmail.com/Databricks Course/formula1_project_incr_load/3-silver/5. Transform results data",
+					"baseParameters": {
+						"batch_id": {
+							"value": "@activity('Identify next batch').output.runOutput",
+							"type": "Expression"
+						}
+					}
+				},
+				"linkedServiceName": {
+					"referenceName": "ls_databricks_course_ws",
+					"type": "LinkedServiceReference"
+				}
+			},
+			{
+				"name": "Transform sprints data",
+				"type": "DatabricksNotebook",
+				"dependsOn": [
+					{
+						"activity": "Ingest sprints files",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "0.12:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"notebookPath": "/Users/namanchauhan59@gmail.com/Databricks Course/formula1_project_incr_load/3-silver/6. Transform sprints data",
+					"baseParameters": {
+						"batch_id": {
+							"value": "@activity('Identify next batch').output.runOutput",
+							"type": "Expression"
+						}
+					}
+				},
+				"linkedServiceName": {
+					"referenceName": "ls_databricks_course_ws",
+					"type": "LinkedServiceReference"
+				}
+			},
+			{
+				"name": "Build races dimensions",
+				"type": "DatabricksNotebook",
+				"dependsOn": [
+					{
+						"activity": "Transform races data",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					},
+					{
+						"activity": "Transform circuits data",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "0.12:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"notebookPath": "/Users/namanchauhan59@gmail.com/Databricks Course/formula1_project_incr_load/4-gold/1. Build races dimensions",
+					"baseParameters": {
+						"batch_id": {
+							"value": "@activity('Identify next batch').output.runOutput",
+							"type": "Expression"
+						}
+					}
+				},
+				"linkedServiceName": {
+					"referenceName": "ls_databricks_course_ws",
+					"type": "LinkedServiceReference"
+				}
+			},
+			{
+				"name": "Build constructors dimensions",
+				"type": "DatabricksNotebook",
+				"dependsOn": [
+					{
+						"activity": "Transform constructors data",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "0.12:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"notebookPath": "/Users/namanchauhan59@gmail.com/Databricks Course/formula1_project_incr_load/4-gold/2. Build constructors dimensions",
+					"baseParameters": {
+						"batch_id": {
+							"value": "@activity('Identify next batch').output.runOutput",
+							"type": "Expression"
+						}
+					}
+				},
+				"linkedServiceName": {
+					"referenceName": "ls_databricks_course_ws",
+					"type": "LinkedServiceReference"
+				}
+			},
+			{
+				"name": "Build drivers dimensions",
+				"type": "DatabricksNotebook",
+				"dependsOn": [
+					{
+						"activity": "Transform drivers data",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "0.12:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"notebookPath": "/Users/namanchauhan59@gmail.com/Databricks Course/formula1_project_incr_load/4-gold/3. Build drivers dimensions",
+					"baseParameters": {
+						"batch_id": {
+							"value": "@activity('Identify next batch').output.runOutput",
+							"type": "Expression"
+						}
+					}
+				},
+				"linkedServiceName": {
+					"referenceName": "ls_databricks_course_ws",
+					"type": "LinkedServiceReference"
+				}
+			},
+			{
+				"name": "Build results fact",
+				"type": "DatabricksNotebook",
+				"dependsOn": [
+					{
+						"activity": "Transform results data",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					},
+					{
+						"activity": "Transform sprints data",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "0.12:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"notebookPath": "/Users/namanchauhan59@gmail.com/Databricks Course/formula1_project_incr_load/4-gold/4.Build results fact",
+					"baseParameters": {
+						"batch_id": {
+							"value": "@activity('Identify next batch').output.runOutput",
+							"type": "Expression"
+						}
+					}
+				},
+				"linkedServiceName": {
+					"referenceName": "ls_databricks_course_ws",
+					"type": "LinkedServiceReference"
+				}
+			},
+			{
+				"name": "Complete batch",
+				"type": "DatabricksNotebook",
+				"dependsOn": [
+					{
+						"activity": "Build constructors dimensions",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					},
+					{
+						"activity": "Build drivers dimensions",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					},
+					{
+						"activity": "Build results fact",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					},
+					{
+						"activity": "Build races dimensions",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "0.12:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"notebookPath": "/Users/namanchauhan59@gmail.com/Databricks Course/formula1_project_incr_load/6-orchestration/Complete batch",
+					"baseParameters": {
+						"batch_id": {
+							"value": "@activity('Identify next batch').output.runOutput",
+							"type": "Expression"
+						}
+					}
+				},
+				"linkedServiceName": {
+					"referenceName": "ls_databricks_course_ws",
+					"type": "LinkedServiceReference"
+				}
+			}
+		],
+		"concurrency": 1,
+		"variables": {
+			"batch_id": {
+				"type": "String"
+			}
+		},
+		"annotations": [],
+		"lastPublishTime": "2026-05-13T08:02:23Z"
+	},
+	"type": "Microsoft.DataFactory/factories/pipelines"
+}
